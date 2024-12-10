@@ -23,5 +23,9 @@ router = routers.DefaultRouter()
 router.register(r'event-handler', views.EventHandlerViewSet)
 
 urlpatterns = [
-    path('/event_handler/', include(router.urls)),
+    path('admin/', admin.site.urls),
+    path('security/event/', views.EventHandlerViewSet.as_view({
+        'post': 'create', # Only define POST method if that's all we need
+        'get': 'list'   # For GET requests, map to a list
+    })),
 ]
