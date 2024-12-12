@@ -24,15 +24,14 @@ The API has the following endpoints:
 Currently, there is functionality for all end points, __except__ the ranged GET request. This will be implemented in the future.
 
 It also properly thows Error Code 400 errors if the endpoint is not found or the JSON posted is in the incorrect format.
-
 ## Installation
 To begin setup for the project, first __clone__ the repository:
 ```bash 
-git clone [repository]
+git clone https://github.com/neiroc-02/event_handler.git
 ```
 Then, navigate to the project directory:
 ```bash
-cd [repository]
+cd event_handler
 ```
 Create a virtual environment for all the python packages:
 ```bash
