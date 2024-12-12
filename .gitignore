@@ -2,5 +2,6 @@
 venv
 
 # Event Handler Stuff
+event_handler/event_handler/migrations
 event_handler/event_handler/__pycache__
-event_handler/db.sqllite3
+event_handler/db.sqlite3
