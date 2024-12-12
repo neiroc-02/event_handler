@@ -28,4 +28,7 @@ urlpatterns = [
         'post': 'create', # Only define POST method if that's all we need
         'get': 'list'   # For GET requests, map to a list
     })),
+    path('security/event/<str:start>/<str:end>/', views.EventHandlerViewSet.as_view({
+        'get': 'filter_events'
+    })),
 ]
