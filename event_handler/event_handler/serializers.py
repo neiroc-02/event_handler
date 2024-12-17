@@ -9,7 +9,7 @@ class EventHandlerSerializer(serializers.ModelSerializer):
             'event_type': {'required': True},
             'mitre_threat_no': {'required': True},
             'description': {'required': True},
-            'timestamp': {'required': True}
+            'timestamp': {'required': False} # due to auto now add setting
         }
 
     def validate(self, data):
