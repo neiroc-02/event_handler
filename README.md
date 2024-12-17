@@ -20,6 +20,7 @@ The API has the following endpoints:
     - GET: Get all security events
 - `/security/event/<start_time>/<end_time>/`
     - GET: Get all security events between the start and end time
+        - Place them in the following format: `yyyy-MM-DDTHH:MM:ss/yyyy-MM-DDTHH:MM:ss`
 
 Currently, there is functionality for all end points, __except__ the ranged GET request. This will be implemented in the future.
 
@@ -52,6 +53,7 @@ source venv/bin/activate    # Activate the virtual environment
 
 Then, you can run the server using the following command:
 ```bash
+python manage.py makemigration event_handler    # This command may be needed in development
 python manage.py migrate    # It may recommend you to run the following command to migrate the database
 python manage.py runserver  # Start the server
 ```
