@@ -22,13 +22,20 @@ from . import views
 router = routers.DefaultRouter()
 router.register(r'event-handler', views.EventHandlerViewSet)
 
+'''
+This shows the request paths allowed by this API:
+I allow a...
+- general GET request (for debugging)
+- ranged GET request (based on timestamp)
+- POST request
+'''
 urlpatterns = [
-    #path('admin/', admin.site.urls),                           # Admin path was here in the default setup, doesn't seem like we need it
+    #path('admin/', admin.site.urls), # Admin path was here in the default setup, doesn't seem like we need it
     path('security/event/', views.EventHandlerViewSet.as_view({
-        'post': 'create', # Only define POST method if that's all we need
-        'get': 'list'   # For GET requests, map to a list
+        'post': 'create',   # POST requests
+        'get': 'list'       # For GET requests, map to a list
     })),
     path('security/event/<str:start>/<str:end>/', views.EventHandlerViewSet.as_view({
-        'get': 'filter_events'
+        'get': 'filter_events'  # Uses filter_events to return all JSON objects within the time range
     })),
 ]
