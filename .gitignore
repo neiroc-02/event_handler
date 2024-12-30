@@ -5,3 +5,6 @@ venv
 event_handler/event_handler/migrations
 event_handler/event_handler/__pycache__
 event_handler/db.sqlite3
+
+# Ignore the test server; keeping it for reference
+test_client/Server

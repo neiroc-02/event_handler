@@ -6,7 +6,7 @@ This API can be used to place GET and POST requests for the BorgConnect interfac
 ```json
 {
     {
-        "event type":"Non TLS Connection",            
+        "event type": "Non TLS Connection",            
         "mitre_threat_no": "CWE_9999", 
         "description": "originated from 192.168.1.65",
         "timestamp": "yyyy-MM-DD HH:MM:ss"
@@ -22,7 +22,7 @@ The API has the following endpoints:
     - GET: Get all security events between the start and end time
         - Place them in the following format: `yyyy-MM-DDTHH:MM:ss/yyyy-MM-DDTHH:MM:ss`
 
-Currently, there is functionality for all end points, __except__ the ranged GET request. This will be implemented in the future.
+Currently, there is functionality for all end points!
 
 It also properly thows Error Code 400 errors if the endpoint is not found or the JSON posted is in the incorrect format.
 ## Installation
