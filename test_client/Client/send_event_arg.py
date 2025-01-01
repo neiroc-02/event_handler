@@ -51,7 +51,7 @@ def main():
             "timestamp": get_timestamp()
         },
         {
-            "event type": "Unauthorised Application Access",
+            "event_type": "Unauthorised Application Access",
             "mitre_threat_no": "CWE_9999",
             "description": "originated from 192.168.1.65",
             "timestamp": get_timestamp()
