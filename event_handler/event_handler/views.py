@@ -16,14 +16,15 @@ class EventHandlerViewSet(viewsets.ModelViewSet):
     serializer_class = EventHandlerSerializer
 
     def create(self, request, *args, **kwargs):
-        data = request.data
-        if isinstance(data, list):
-            serializer = self.get_serializer(data=data, many=True)
-        else:
-            serializer = self.get_serializer(data=data)
+        is_many = isinstance(request.data, list)
+        serializer = self.get_serializer(data=request.data, many=is_many)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def perform_create(self, serializer):
+        serializer.save()
 
     # This function is for the ranged GET request allowing us to parse the range of values based on the timestamp entry
     @action(detail=False, methods=['get'], url_path='(?P<start>[^/.]+)/(?P<end>[^/.]+)')
