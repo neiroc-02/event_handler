@@ -12,7 +12,7 @@ def send_post_request(url, payload):
     headers = {'Content-Type': 'application/json'}
     try:
         response = requests.post(url, json=payload, headers=headers)
-        if response.status_code == 200:
+        if response.status_code == 201:
             print("POST request was successful")
             print(f"Response: {response.json()}")
         else:
@@ -23,21 +23,29 @@ def send_post_request(url, payload):
 def main():
     # Set up argument parser
     parser = argparse.ArgumentParser(description="Send security events as a POST request to a given URL and port.")
-    
+
     # Add arguments for URL and port
     parser.add_argument('url', type=str, help="The base URL to connect to (e.g., 'localhost').")
     parser.add_argument('port', type=int, help="The port number to connect to.")
-    
+
     # Parse arguments
     args = parser.parse_args()
-    
+
     # Create the full URL
-    full_url = f"http://{args.url}:{args.port}/security/event"
-    
+    full_url = f"http://{args.url}:{args.port}/security/event/" # NOTE: Has to contain a trailing slash
+
+    # Prepare singulat JSON payload
+    test_payload = {
+        "event_type": "Non TLS Connection",
+        "mitre_threat_no": "CWE_9999",
+        "description": "originated from 10.0.0.15",
+        "timestamp": get_timestamp()
+    }
+
     # Prepare the JSON payload
     payload = [
         {
-            "event type": "Non TLS Connection",
+            "event_type": "Non TLS Connection",
             "mitre_threat_no": "CWE_9999",
             "description": "originated from 192.168.1.65",
             "timestamp": get_timestamp()
@@ -49,9 +57,13 @@ def main():
             "timestamp": get_timestamp()
         }
     ]
-    
+
+    # Send the singular POST request
+    send_post_request(full_url, test_payload)
+
     # Send the POST request
     send_post_request(full_url, payload)
+
 
 if __name__ == "__main__":
     main()
