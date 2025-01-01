@@ -6,7 +6,7 @@ This API can be used to place GET and POST requests for the BorgConnect interfac
 ```json
 {
     {
-        "event type": "Non TLS Connection",            
+        "event_type": "Non TLS Connection",            
         "mitre_threat_no": "CWE_9999", 
         "description": "originated from 192.168.1.65",
         "timestamp": "yyyy-MM-DD HH:MM:ss"
@@ -51,12 +51,20 @@ First, ensure that your virtual environment is activated:
 source venv/bin/activate    # Activate the virtual environment
 ```
 
-Then, you can run the server using the following command:
+When developing the program, you may need to run the following commands to update the API:
 ```bash
 python manage.py makemigrations event_handler    # This command may be needed in development
 python manage.py migrate                         # It may recommend you to run the following command to migrate the database
-python manage.py runserver                       # Start the server
 ```
+
+After the above commands are run, you can start the server one of two ways:
+```bash
+python manage.py runserver                       
+# Start the server on your local host
+python manage.py runserver 0.0.0.0:8000          
+# Start the server on your IP address so you can access it from other devices. You can access it from your browser by typing in the IP address and port number (http://<ip_address>:8000/path/to/endpoint)
+```
+You can now access the API from your browser or using a tool like `Postman` to send GET and POST requests to the server.
 ## Cleaning Up
 After you are done with the server, you can deactivate the virtual environment:
 ```bash

@@ -21,6 +21,10 @@ class EventHandlerSerializer(serializers.ModelSerializer):
 
     # The validate function verfies that the incoming data has the correct set of fields
     def validate(self, data):
+        # Add the list check so I can validate the list case
+        if isinstance(self.initial_data, list):
+            return data
+        # General case
         extra_fields = set(self.initial_data.keys()) - set(self.fields.keys())
         if extra_fields:
             raise serializers.ValidationError(f"Extra fields not allowed: {extra_fields}")
