@@ -4,14 +4,14 @@ This repository contains the code for the BorgConnect interface with CYMANII and
 ## Usage 
 This API can be used to place GET and POST requests for the BorgConnect interface. It writes to JSON files in the following format...
 ```json
-{
+[
     {
         "event_type": "Non TLS Connection",            
         "mitre_threat_no": "CWE_9999", 
         "description": "originated from 192.168.1.65",
         "timestamp": "yyyy-MM-DD HH:MM:ss"
     }
-}
+]
 ```
 
 The API has the following endpoints:
@@ -41,7 +41,7 @@ source venv/bin/activate    # Activate the virtual environment
 ```
 Then install the required packages to run the Django REST API:
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt   # Install the required packages
 ```
 ## Running the Server
 After all the setup is complete, you can run the server.
