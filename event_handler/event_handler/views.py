@@ -15,6 +15,16 @@ class EventHandlerViewSet(viewsets.ModelViewSet):
     queryset = EventHandler.objects.all()
     serializer_class = EventHandlerSerializer
 
+    def create(self, request, *args, **kwargs):
+        data = request.data
+        if isinstance(data, list):
+            serializer = self.get_serializer(data=data, many=True)
+        else:
+            serializer = self.get_serializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
     # This function is for the ranged GET request allowing us to parse the range of values based on the timestamp entry
     @action(detail=False, methods=['get'], url_path='(?P<start>[^/.]+)/(?P<end>[^/.]+)')
     def filter_events(self, request, start=None, end=None):
